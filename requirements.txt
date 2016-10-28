@@ -1,0 +1,6 @@
+pyusb
+click
+requests
+colorama
+https://github.com/pklaus/brother_ql/archive/master.zip
+
