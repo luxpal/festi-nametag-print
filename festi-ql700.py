@@ -13,6 +13,11 @@ from colorama import init, Fore, Back, Style
 from usb.core import USBError
 
 
+if sys.version_info[:3] < (3, 4):
+    print('Error) 파이썬3로 실행해주세요.', file=sys.stderr)
+    sys.exit(1)
+
+
 def speak(message):
     os.system('say -v Yuna "{0}" || say "{0}"'.format(message))
 
