@@ -19,24 +19,21 @@ def speak(message):
 
 def red(message, **kwargs):
     kwargs.setdefault('file', sys.stderr)
-    print(Fore.RED, end='')
+    print(Fore.RED, end='', **kwargs)
     print(message, **kwargs)
-    print(Style.RESET_ALL, end='')
-    sys.stdout.flush()
+    print(Style.RESET_ALL, end='', **kwargs)
 
 
 def green(message, **kwargs):
-    print(Fore.GREEN, end='')
+    print(Fore.GREEN, end='', **kwargs)
     print(message, **kwargs)
-    print(Style.RESET_ALL, end='')
-    sys.stdout.flush()
+    print(Style.RESET_ALL, end='', **kwargs)
 
 
 def blue(message, **kwargs):
-    print(Fore.BLUE, end='')
+    print(Fore.BLUE, end='', **kwargs)
     print(message, **kwargs)
-    print(Style.RESET_ALL, end='')
-    sys.stdout.flush()
+    print(Style.RESET_ALL, end='', **kwargs)
 
 
 def write_fn(self, data):
@@ -78,9 +75,9 @@ class NameTag(object):
     def print(self, data):
         try:
             usb = USB('usb://0x04f9:0x2042')
-        except ValueError:
-            red('프린터 연결을 확인해주세요.')
-            speak('프린터 연결을 확인해주세요.')
+        except ValueError as e:
+            red('프린터 연결 및 전원을 확인해주세요.')
+            speak('프린터 연결 및 전원을 확인해주세요.')
             sys.exit(1)
 
         try:
@@ -125,14 +122,17 @@ class NameTag(object):
 
 @click.command()
 @click.option('--code', prompt='이벤트 코드', help='이벤트 코드를 지정')
-def main(code):
+@click.option('--single/--infinite', default=False, prompt='1회 실행여부')
+def main(code, single):
     name_tag = NameTag(code)
     green('Your Mac Address is "{}"'.format(name_tag.mac_address))
 
     try:
         while True:
             name_tag()
-            sleep(0.5)
+            if single:
+                break
+            sleep(1.0)
     except KeyboardInterrupt:
         sys.exit(1)
 
