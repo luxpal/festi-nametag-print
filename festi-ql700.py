@@ -45,6 +45,8 @@ setattr(USB, '_write', write_fn)
 
 
 class NameTag(object):
+    PRINTER_ID = 'usb://0x04f9:0x2042'
+
     def __init__(self, code):
         self.mac_address = '%02X' % getnode()
         self.code = code
@@ -72,13 +74,20 @@ class NameTag(object):
             print('.', end='')
             sys.stdout.flush()
 
-    def print(self, data):
+    def test(self):
         try:
-            usb = USB('usb://0x04f9:0x2042')
+            usb = USB(self.PRINTER_ID)
         except ValueError as e:
             red('프린터 연결 및 전원을 확인해주세요.')
             speak('프린터 연결 및 전원을 확인해주세요.')
             sys.exit(1)
+
+    def print(self, data):
+        try:
+            usb = USB(self.PRINTER_ID)
+        except ValueError as e:
+            red('프린터 연결 및 전원을 확인해주세요.')
+            speak('프린터 연결 및 전원을 확인해주세요.')
 
         try:
             try:
@@ -128,6 +137,8 @@ def main(code, single):
     green('Your Mac Address is "{}"'.format(name_tag.mac_address))
 
     try:
+        name_tag.test()
+
         while True:
             name_tag()
             if single:

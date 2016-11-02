@@ -20,7 +20,7 @@
 
 ### 실행순서
 
- * Brother QL-700 드라이버를 먼저 설치해주시고, 프린터를 연결하신 후, 전원을 켜주세요.
+ * [Brother QL-700 드라이버](http://support.brother.com/g/b/downloadtop.aspx?c=as_ot&lang=en&prod=lpql700eas)를 먼저 설치해주시고, 프린터를 연결하신 후, 전원을 켜주세요.
 
  * `requirements.txt` 내 라이브러리를 먼저 설치해주세요.
 
