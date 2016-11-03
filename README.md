@@ -22,7 +22,13 @@
 
  * [Brother QL-700 드라이버](http://support.brother.com/g/b/downloadtop.aspx?c=as_ot&lang=en&prod=lpql700eas)를 먼저 설치해주시고, 프린터를 연결하신 후, 전원을 켜주세요.
 
- * `requirements.txt` 내 라이브러리를 먼저 설치해주세요.
+ * libusb 설치가 필요합니다. 다음과 같이 homebrew 를 통해 설치가 가능합니다.
+
+```
+brew install libusb
+```
+
+ * `파이썬3`용 pip를 통해 `requirements.txt` 내 라이브러리를 설치해주세요.
 
 ```
 pip install requirements.txt
