@@ -31,13 +31,13 @@ brew install libusb
  * `파이썬3`용 pip를 통해 `requirements.txt` 내 라이브러리를 설치해주세요.
 
 ```
-pip install requirements.txt
+pip3 install -r requirements.txt
 ```
 
  * 이벤트 코드와 함께 다음 명령으로 실행주세요. 이벤트 코드는 관리자에게 문의해주세요.
 
 ```
-python festi-ql700.py --code 이벤트코드
+python3 festi-ql700.py --code 이벤트코드
 ```
 
 
