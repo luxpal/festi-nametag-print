@@ -75,8 +75,10 @@ class NameTag(object):
         except (UnicodeDecodeError, ValueError):
             self.print(data)
         else:
-            # response_data
-            print('.', end='')
+            if 'message' in response_data:
+                print(response_data['message'])
+            else:
+                print('.', end='')
             sys.stdout.flush()
 
     def test(self):
